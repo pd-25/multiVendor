@@ -32,7 +32,7 @@
       @include('admin.components.successFalureMsg')
     </div>
     <!-- /.card-header -->
-    <form action="{{route('banner.update',$banner->slug)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('banner.update',$banner->slug)}}" method="PUT" enctype="multipart/form-data">
       @csrf
       
     <div class="card-body">
@@ -50,11 +50,11 @@
                 
                 <div class="col-md-5">
                     <p>Old Photo</p>
-                    <img height="100px" width="200px" src="/BannerPhoto/{{$banner->photo}}">
+                    <img height="100px" width="200px" src="/{{$banner->photo}}">
                 </div>
                     
                 <div class="col-md-7 custom-file">
-                    <input type="file" class="custom-file-input" id="exampleInputFile" name="photo">
+                    <input type="file" class="custom-file-input" id="exampleInputFile" name="photo" value="/{{$banner->photo}}">
                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                 </div>
               
@@ -102,7 +102,7 @@
       </div>
       <!-- /.row -->
       <div >
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button name="submit" type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
 </form>

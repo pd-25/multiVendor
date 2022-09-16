@@ -50,7 +50,7 @@ class BannerController extends Controller
         $imagefullname = '';
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
-            $imgname = time().rand(0000,9999).'.'.$image->getClientOriginalExtension();
+            $imgname = 'BannerPhoto/'.time().rand(0000,9999).'.'.$image->getClientOriginalExtension();
             $imagefullname = $image->move('BannerPhoto', $imgname);
             //storePubliclyAs
         }
@@ -102,28 +102,39 @@ class BannerController extends Controller
      */
     public function update(BannerRequest $request, $slug)
     {
-        $data = $request->except('photo','slug');
-        $slug = Str::slug($data['title']);
-        $imagefullname = '';
-        if ($request->hasFile('photo')) {
-            $image = $request->file('photo');
-            $imgname = time().rand(0000,9999).'.'.$image->getClientOriginalExtension();
-            $imagefullname = $image->move('BannerPhoto', $imgname);
-            //storePubliclyAs
-        }
-        $data['photo'] = $imgname;
-         dd($data);
-        $insert_banner = Banner::where('slug',$slug)->where('id',$request->id)->update($data);
-        if($insert_banner){
-            // return redirect('banners.index')->with('success','Banner Successfully Created');
-            $request->session()->flash('success', 'Banner Successfully Updated');
+    dd("ghfff");
 
-            return redirect('admin/banner');
-        }else{
-            $request->session()->flash('error','Something went Wrong');
-            return redirect()->back();
-            // return back()->with('error','Something went Wrong');
-        } 
+        // $data = $request->except('photo','slug');
+        // //$slug = Str::slug($data['title']);
+
+        // $existing_image = Banner::where('slug',$slug)->select('photo')->first();
+        // if(!empty($existing_image)){
+        //     $data['photo'] = $existing_image;
+        // }else{
+        //     $imagefullname = '';
+        //     if ($request->hasFile('photo')) {
+        //         $image = $request->file('photo');
+        //         $imgname = time().rand(0000,9999).'.'.$image->getClientOriginalExtension();
+        //         $imagefullname = $image->move('BannerPhoto', $imgname);
+        //         //storePubliclyAs
+        //     }
+    
+        //     $data['photo'] = $imgname;
+        // }
+
+      
+
+        // $insert_banner = Banner::where('slug',$slug)->where('id',$request->id)->update($data);
+
+        // if($insert_banner){
+            
+        //     $request->session()->flash('success', 'Banner Successfully Updated');
+
+        //     return redirect('admin/banner');
+        // }else{
+        //     $request->session()->flash('error','Something went Wrong');
+        //     return redirect()->back();
+        // } 
     }
 
     /**

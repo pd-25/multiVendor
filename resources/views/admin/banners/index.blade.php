@@ -37,7 +37,7 @@
             <tr>
               <td>{{$loop->iteration}}</td>
               <td>{{$item->title}}</td>
-              <td><img height="200px" width="200px" src="/BannerPhoto/{{$item->photo}}" alt="banner image"></td>
+              <td><img height="200px" width="200px" src="/{{$item->photo}}" alt="banner image"></td>
               <td>{{$item->description}}</td>
               <td>{{$item->status}}</td>
               <td>{{$item->condition}}</td>
